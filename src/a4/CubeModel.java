@@ -13,19 +13,19 @@ public class CubeModel extends Model {
     // Fields
     ////////////////////////////////////////////////////////////
 
-    private final Vector3f[] vertices = {
-            new Vector3f(-1.0f,  1.0f, -1.0f), new Vector3f(-1.0f, -1.0f, -1.0f), new Vector3f(1.0f, -1.0f, -1.0f),
-            new Vector3f( 1.0f, -1.0f, -1.0f), new Vector3f( 1.0f,  1.0f, -1.0f), new Vector3f(-1.0f,  1.0f, -1.0f),
-            new Vector3f( 1.0f, -1.0f, -1.0f), new Vector3f( 1.0f, -1.0f,  1.0f), new Vector3f( 1.0f,  1.0f, -1.0f),
-            new Vector3f( 1.0f, -1.0f,  1.0f), new Vector3f( 1.0f,  1.0f,  1.0f), new Vector3f( 1.0f,  1.0f, -1.0f),
-            new Vector3f( 1.0f, -1.0f,  1.0f), new Vector3f(-1.0f, -1.0f,  1.0f), new Vector3f( 1.0f,  1.0f,  1.0f),
-            new Vector3f(-1.0f, -1.0f,  1.0f), new Vector3f(-1.0f,  1.0f,  1.0f), new Vector3f( 1.0f,  1.0f,  1.0f),
-            new Vector3f(-1.0f, -1.0f,  1.0f), new Vector3f(-1.0f, -1.0f, -1.0f), new Vector3f(-1.0f,  1.0f,  1.0f),
-            new Vector3f(-1.0f, -1.0f, -1.0f), new Vector3f(-1.0f,  1.0f, -1.0f), new Vector3f(-1.0f,  1.0f,  1.0f),
-            new Vector3f(-1.0f, -1.0f,  1.0f), new Vector3f( 1.0f, -1.0f,  1.0f), new Vector3f( 1.0f, -1.0f, -1.0f),
-            new Vector3f( 1.0f, -1.0f, -1.0f), new Vector3f(-1.0f, -1.0f, -1.0f), new Vector3f(-1.0f, -1.0f,  1.0f),
-            new Vector3f(-1.0f,  1.0f, -1.0f), new Vector3f( 1.0f,  1.0f, -1.0f), new Vector3f( 1.0f,  1.0f,  1.0f),
-            new Vector3f( 1.0f,  1.0f,  1.0f), new Vector3f(-1.0f,  1.0f,  1.0f), new Vector3f(-1.0f,  1.0f, -1.0f)
+    private final float[] vertices = {
+        -1.0f,  1.0f, -1.0f, /**/ -1.0f, -1.0f, -1.0f, /**/  1.0f, -1.0f, -1.0f,
+         1.0f, -1.0f, -1.0f, /**/  1.0f,  1.0f, -1.0f, /**/ -1.0f,  1.0f, -1.0f,
+         1.0f, -1.0f, -1.0f, /**/  1.0f, -1.0f,  1.0f, /**/  1.0f,  1.0f, -1.0f,
+         1.0f, -1.0f,  1.0f, /**/  1.0f,  1.0f,  1.0f, /**/  1.0f,  1.0f, -1.0f,
+         1.0f, -1.0f,  1.0f, /**/ -1.0f, -1.0f,  1.0f, /**/  1.0f,  1.0f,  1.0f,
+        -1.0f, -1.0f,  1.0f, /**/ -1.0f,  1.0f,  1.0f, /**/  1.0f,  1.0f,  1.0f,
+        -1.0f, -1.0f,  1.0f, /**/ -1.0f, -1.0f, -1.0f, /**/ -1.0f,  1.0f,  1.0f,
+        -1.0f, -1.0f, -1.0f, /**/ -1.0f,  1.0f, -1.0f, /**/ -1.0f,  1.0f,  1.0f,
+        -1.0f, -1.0f,  1.0f, /**/  1.0f, -1.0f,  1.0f, /**/  1.0f, -1.0f, -1.0f,
+         1.0f, -1.0f, -1.0f, /**/ -1.0f, -1.0f, -1.0f, /**/ -1.0f, -1.0f,  1.0f,
+        -1.0f,  1.0f, -1.0f, /**/  1.0f,  1.0f, -1.0f, /**/  1.0f,  1.0f,  1.0f,
+         1.0f,  1.0f,  1.0f, /**/ -1.0f,  1.0f,  1.0f, /**/ -1.0f,  1.0f, -1.0f,
     };
 
     ////////////////////////////////////////////////////////////
@@ -42,11 +42,11 @@ public class CubeModel extends Model {
 
     @Override
     public int getNumVertices() {
-        return vertices.length;
+        return vertices.length / 3;
     }
 
     @Override
-    public Vector3f[] getVertices() {
+    public float[] getVertices() {
         return vertices;
     }
 

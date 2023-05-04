@@ -9,8 +9,8 @@ import static com.jogamp.opengl.GL.GL_LINES;
 
 public class AxisModel extends Model {
 
-    private Vector3f[] axisVertices;
-    private Vector4f[] vertexColors;
+    private final float[] axisVertices = new float[6 * 3];
+    private final float[] vertexColors = new float[6 * 4];
 
     public AxisModel(float axisLength, Vector4fc xColor, Vector4fc yColor, Vector4fc zColor) {
         props.primitive = GL_LINES;
@@ -19,52 +19,50 @@ public class AxisModel extends Model {
     }
 
     private void createVertices(float axisLength) {
-        axisVertices = new Vector3f[6];
-
-        // Position start points of each axis at origin
-        for(int axis = 0; axis < 3; axis++) {
-            axisVertices[axis * 2] = new Vector3f(0f, 0f, 0f);
-        }
-
         // Position endpoints of each axis
-        axisVertices[1] = new Vector3f(axisLength, 0f, 0f);
-        axisVertices[3] = new Vector3f(0f, axisLength, 0f);
-        axisVertices[5] = new Vector3f(0f, 0f, axisLength);
-
+        axisVertices[1 * 2 + 0] = axisLength; // x
+        axisVertices[3 * 2 + 1] = axisLength; // y
+        axisVertices[5 * 2 + 2] = axisLength; // z
     }
 
     private void createColors(Vector4fc xColor, Vector4fc yColor, Vector4fc zColor) {
-        vertexColors = new Vector4f[6];
-        vertexColors[0] = new Vector4f(xColor);
-        vertexColors[1] = new Vector4f(xColor);
-        vertexColors[2] = new Vector4f(yColor);
-        vertexColors[3] = new Vector4f(yColor);
-        vertexColors[4] = new Vector4f(zColor);
-        vertexColors[5] = new Vector4f(zColor);
+        int i = 0;
+        vertexColors[i++] = xColor.x();
+        vertexColors[i++] = xColor.y();
+        vertexColors[i++] = xColor.z();
+        vertexColors[i++] = xColor.w();
+        vertexColors[i++] = yColor.x();
+        vertexColors[i++] = yColor.y();
+        vertexColors[i++] = yColor.z();
+        vertexColors[i++] = yColor.w();
+        vertexColors[i++] = zColor.x();
+        vertexColors[i++] = zColor.y();
+        vertexColors[i++] = zColor.z();
+        vertexColors[i++] = zColor.w();
     }
 
     @Override
     public int getNumVertices() {
-        return axisVertices.length;
+        return axisVertices.length / 3;
     }
 
     @Override
-    public Vector3f[] getVertices() {
+    public float[] getVertices() {
         return axisVertices;
     }
 
     @Override
-    public Vector2f[] getTexCoords() {
+    public float[] getTexCoords() {
         return null;
     }
 
     @Override
-    public Vector3f[] getNormals() {
+    public float[] getNormals() {
         return null;
     }
 
     @Override
-    public Vector4f[] getColors() {
+    public float[] getColors() {
         return vertexColors;
     }
 

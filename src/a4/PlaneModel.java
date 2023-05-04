@@ -12,12 +12,12 @@ public class PlaneModel extends Model {
     // Fields
     ////////////////////////////////////////////////////////////
 
-    private final Vector3f[] vertices = new Vector3f[6];
-    private final Vector2f[] texCoords = new Vector2f[6];
-    private final Vector3f[] normals = {
-            new Vector3f(0f, 1f, 0f), new Vector3f(0f, 1f, 0f),
-            new Vector3f(0f, 1f, 0f), new Vector3f(0f, 1f, 0f),
-            new Vector3f(0f, 1f, 0f), new Vector3f(0f, 1f, 0f)
+    private final float[] vertices = new float[6 * 3];
+    private final float[] texCoords = new float[6 * 2];
+    private final float[] normals = {
+            0f, 1f, 0f, /**/ 0f, 1f, 0f,
+            0f, 1f, 0f, /**/ 0f, 1f, 0f,
+            0f, 1f, 0f, /**/ 0f, 1f, 0f,
     };
 
     ////////////////////////////////////////////////////////////
@@ -34,23 +34,51 @@ public class PlaneModel extends Model {
     ////////////////////////////////////////////////////////////
 
     private void createVertices(float xHalfLength, float zHalfLength) {
-        vertices[0] = new Vector3f(-xHalfLength, 0f, -zHalfLength);
-        vertices[1] = new Vector3f(-xHalfLength, 0f, zHalfLength);
-        vertices[2] = new Vector3f(xHalfLength, 0f, -zHalfLength);
+        int i = 0;
+        vertices[i++] = -xHalfLength;
+        vertices[i++] = 0f;
+        vertices[i++] = -zHalfLength;
 
-        vertices[3] = new Vector3f(xHalfLength, 0f, zHalfLength);
-        vertices[4] = new Vector3f(xHalfLength, 0f, -zHalfLength);
-        vertices[5] = new Vector3f(-xHalfLength, 0f, zHalfLength);
+        vertices[i++] = -xHalfLength;
+        vertices[i++] = 0f;
+        vertices[i++] = zHalfLength;
+
+        vertices[i++] = xHalfLength;
+        vertices[i++] = 0f;
+        vertices[i++] = -zHalfLength;
+
+        vertices[i++] = xHalfLength;
+        vertices[i++] = 0f;
+        vertices[i++] = zHalfLength;
+
+        vertices[i++] = xHalfLength;
+        vertices[i++] = 0f;
+        vertices[i++] = -zHalfLength;
+
+        vertices[i++] = -xHalfLength;
+        vertices[i++] = 0f;
+        vertices[i++] = zHalfLength;
     }
 
     private void createTexCoords(float xMaxTexCoord, float zMaxTexCoord) {
-        texCoords[0] = new Vector2f(zMaxTexCoord, 0f);
-        texCoords[1] = new Vector2f(0f, 0f);
-        texCoords[2] = new Vector2f(zMaxTexCoord, xMaxTexCoord);
+        int i = 0;
+        texCoords[i++] = zMaxTexCoord;
+        texCoords[i++] = 0f;
 
-        texCoords[3] = new Vector2f(0f, xMaxTexCoord);
-        texCoords[4] = new Vector2f(zMaxTexCoord, xMaxTexCoord);
-        texCoords[5] = new Vector2f(0f, 0f);
+        texCoords[i++] = 0f;
+        texCoords[i++] = 0f;
+
+        texCoords[i++] = zMaxTexCoord;
+        texCoords[i++] = xMaxTexCoord;
+
+        texCoords[i++] = 0f;
+        texCoords[i++] = xMaxTexCoord;
+
+        texCoords[i++] = zMaxTexCoord;
+        texCoords[i++] = xMaxTexCoord;
+
+        texCoords[i++] = 0f;
+        texCoords[i++] = 0f;
     }
 
     ////////////////////////////////////////////////////////////
@@ -59,21 +87,21 @@ public class PlaneModel extends Model {
 
     @Override
     public int getNumVertices() {
-        return vertices.length;
+        return vertices.length / 3;
     }
 
     @Override
-    public Vector3f[] getVertices() {
+    public float[] getVertices() {
         return vertices;
     }
 
     @Override
-    public Vector2f[] getTexCoords() {
+    public float[] getTexCoords() {
         return texCoords;
     }
 
     @Override
-    public Vector3f[] getNormals() {
+    public float[] getNormals() {
         return normals;
     }
 

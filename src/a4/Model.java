@@ -54,11 +54,11 @@ public abstract class Model {
         vbos = new int[VBO_COUNT];
         gl.glGenBuffers(vbos.length, vbos, 0);
 
-        genVBOf(gl, VBO_VERTICES, ConvertUtil.toFloatArray(getVertices()));
-        if(hasTexCoords()) genVBOf(gl, VBO_TEX_COORDS, ConvertUtil.toFloatArray(getTexCoords()));
-        if(hasNormals()) genVBOf(gl, VBO_NORMALS, ConvertUtil.toFloatArray(getNormals()));
-        if(hasTangents()) genVBOf(gl, VBO_TANGENTS, ConvertUtil.toFloatArray(getTangents()));
-        if(hasColors()) genVBOf(gl, VBO_COLORS, ConvertUtil.toFloatArray(getColors()));
+        genVBOf(gl, VBO_VERTICES, getVertices());
+        if(hasTexCoords()) genVBOf(gl, VBO_TEX_COORDS, getTexCoords());
+        if(hasNormals()) genVBOf(gl, VBO_NORMALS, getNormals());
+        if(hasTangents()) genVBOf(gl, VBO_TANGENTS, getTangents());
+        if(hasColors()) genVBOf(gl, VBO_COLORS, getColors());
         if(hasTexUnitIndices()) genVBOi(gl, VBO_TEX_UNIT_INDICES, getTexUnitIndices());
     }
 
@@ -67,11 +67,11 @@ public abstract class Model {
     }
 
     public abstract int getNumVertices();
-    public abstract Vector3f[] getVertices();
-    public Vector2f[] getTexCoords() { return null; }
-    public Vector3f[] getNormals() { return null; }
-    public Vector3f[] getTangents() { return null; }
-    public Vector4f[] getColors() { return null; }
+    public abstract float[] getVertices();
+    public float[] getTexCoords() { return null; }
+    public float[] getNormals() { return null; }
+    public float[] getTangents() { return null; }
+    public float[] getColors() { return null; }
     public int[] getTexUnitIndices() { return null; }
     public boolean hasTexCoords() { return false; }
     public boolean hasNormals() { return false; }

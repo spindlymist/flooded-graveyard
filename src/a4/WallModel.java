@@ -17,94 +17,94 @@ public class WallModel extends Model {
     // Fields
     ////////////////////////////////////////////////////////////
 
-    private final Vector3f[] vertices = {
+    private final float[] vertices = {
         // Front large
-        new Vector3f(-1f, 0f, 0.5f), new Vector3f(1f, 2f, 0.5f), new Vector3f(-1f, 2f, 0.5f),
-        new Vector3f(-1f, 0f, 0.5f), new Vector3f(1f, 0f, 0.5f), new Vector3f(1f, 2f, 0.5f),
+        -1f, 0f, 0.5f, /**/ 1f, 2f, 0.5f, /**/ -1f, 2f, 0.5f,
+        -1f, 0f, 0.5f, /**/ 1f, 0f, 0.5f, /**/ 1f, 2f, 0.5f,
         // Front small
-        new Vector3f(-1f, 2f, 0.5f), new Vector3f(0f, 3f, 0.5f), new Vector3f(-1f, 3f, 0.5f),
-        new Vector3f(-1f, 2f, 0.5f), new Vector3f(0f, 2f, 0.5f), new Vector3f(0f, 3f, 0.5f),
+        -1f, 2f, 0.5f, /**/ 0f, 3f, 0.5f, /**/ -1f, 3f, 0.5f,
+        -1f, 2f, 0.5f, /**/ 0f, 2f, 0.5f, /**/ 0f, 3f, 0.5f,
         // Back large
-        new Vector3f(-1f, 0f, -0.5f), new Vector3f(-1f, 2f, -0.5f), new Vector3f(1f, 2f, -0.5f),
-        new Vector3f(-1f, 0f, -0.5f), new Vector3f(1f, 2f, -0.5f), new Vector3f(1f, 0f, -0.5f),
+        -1f, 0f, -0.5f, /**/ -1f, 2f, -0.5f, /**/ 1f, 2f, -0.5f,
+        -1f, 0f, -0.5f, /**/ 1f, 2f, -0.5f, /**/ 1f, 0f, -0.5f,
         // Back small
-        new Vector3f(-1f, 2f, -0.5f), new Vector3f(-1f, 3f, -0.5f), new Vector3f(0f, 3f, -0.5f),
-        new Vector3f(-1f, 2f, -0.5f), new Vector3f(0f, 3f, -0.5f), new Vector3f(0f, 2f, -0.5f),
+        -1f, 2f, -0.5f, /**/ -1f, 3f, -0.5f, /**/ 0f, 3f, -0.5f,
+        -1f, 2f, -0.5f, /**/ 0f, 3f, -0.5f, /**/ 0f, 2f, -0.5f,
         // Right large
-        new Vector3f(1f, 0f, 0.5f), new Vector3f(1f, 2f, -0.5f), new Vector3f(1f, 2f, 0.5f),
-        new Vector3f(1f, 0f, 0.5f), new Vector3f(1f, 0f, -0.5f), new Vector3f(1f, 2f, -0.5f),
+        1f, 0f, 0.5f, /**/ 1f, 2f, -0.5f, /**/ 1f, 2f, 0.5f,
+        1f, 0f, 0.5f, /**/ 1f, 0f, -0.5f, /**/ 1f, 2f, -0.5f,
         // Right small
-        new Vector3f(0f, 2f, 0.5f), new Vector3f(0f, 3f, -0.5f), new Vector3f(0f, 3f, 0.5f),
-        new Vector3f(0f, 2f, 0.5f), new Vector3f(0f, 2f, -0.5f), new Vector3f(0f, 3f, -0.5f),
+        0f, 2f, 0.5f, /**/ 0f, 3f, -0.5f, /**/ 0f, 3f, 0.5f,
+        0f, 2f, 0.5f, /**/ 0f, 2f, -0.5f, /**/ 0f, 3f, -0.5f,
         // Left
-        new Vector3f(-1f, 0f, -0.5f), new Vector3f(-1f, 3f, 0.5f), new Vector3f(-1f, 3f, -0.5f),
-        new Vector3f(-1f, 0f, -0.5f), new Vector3f(-1f, 0f, 0.5f), new Vector3f(-1f, 3f, 0.5f),
+        -1f, 0f, -0.5f, /**/ -1f, 3f, 0.5f, /**/ -1f, 3f, -0.5f,
+        -1f, 0f, -0.5f, /**/ -1f, 0f, 0.5f, /**/ -1f, 3f, 0.5f,
         // Top left
-        new Vector3f(-1f, 3f, 0.5f), new Vector3f(0f, 3f, -0.5f), new Vector3f(-1f, 3f, -0.5f),
-        new Vector3f(-1f, 3f, 0.5f), new Vector3f(0f, 3f, 0.5f), new Vector3f(0f, 3f, -0.5f),
+        -1f, 3f, 0.5f, /**/ 0f, 3f, -0.5f, /**/ -1f, 3f, -0.5f,
+        -1f, 3f, 0.5f, /**/ 0f, 3f, 0.5f, /**/ 0f, 3f, -0.5f,
         // Top right
-        new Vector3f(0f, 2f, 0.5f), new Vector3f(1f, 2f, -0.5f), new Vector3f(0f, 2f, -0.5f),
-        new Vector3f(0f, 2f, 0.5f), new Vector3f(1f, 2f, 0.5f), new Vector3f(1f, 2f, -0.5f),
+        0f, 2f, 0.5f, /**/ 1f, 2f, -0.5f, /**/ 0f, 2f, -0.5f,
+        0f, 2f, 0.5f, /**/ 1f, 2f, 0.5f, /**/ 1f, 2f, -0.5f,
     };
 
-    private final Vector2f[] texCoords = {
+    private final float[] texCoords = {
         // Front large
-        new Vector2f(0f, 0f), new Vector2f(2f, 2f), new Vector2f(0f, 2f),
-        new Vector2f(0f, 0f), new Vector2f(2f, 0f), new Vector2f(2f, 2f),
+        0f, 0f, /**/ 2f, 2f, /**/ 0f, 2f,
+        0f, 0f, /**/ 2f, 0f, /**/ 2f, 2f,
         // Front small
-        new Vector2f(0f, 2f), new Vector2f(1f, 3f), new Vector2f(0f, 3f),
-        new Vector2f(0f, 2f), new Vector2f(1f, 2f), new Vector2f(1f, 3f),
+        0f, 2f, /**/ 1f, 3f, /**/ 0f, 3f,
+        0f, 2f, /**/ 1f, 2f, /**/ 1f, 3f,
         // Back large
-        new Vector2f(0f, 0f), new Vector2f(0f, 2f), new Vector2f(2f, 2f),
-        new Vector2f(0f, 0f), new Vector2f(2f, 2f), new Vector2f(2f, 0f),
+        0f, 0f, /**/ 0f, 2f, /**/ 2f, 2f,
+        0f, 0f, /**/ 2f, 2f, /**/ 2f, 0f,
         // Back small
-        new Vector2f(0f, 2f), new Vector2f(0f, 3f), new Vector2f(1f, 3f),
-        new Vector2f(0f, 2f), new Vector2f(1f, 3f), new Vector2f(1f, 2f),
+        0f, 2f, /**/ 0f, 3f, /**/ 1f, 3f,
+        0f, 2f, /**/ 1f, 3f, /**/ 1f, 2f,
         // Right large
-        new Vector2f(0f, 0f), new Vector2f(0.5f, 2f), new Vector2f(0f, 2f),
-        new Vector2f(0f, 0f), new Vector2f(0.5f, 0f), new Vector2f(0.5f, 2f),
+        0f, 0f, /**/ 0.5f, 2f, /**/ 0f, 2f,
+        0f, 0f, /**/ 0.5f, 0f, /**/ 0.5f, 2f,
         // Right small
-        new Vector2f(0f, 2f), new Vector2f(0.5f, 3f), new Vector2f(0f, 3f),
-        new Vector2f(0f, 2f), new Vector2f(0.5f, 2f), new Vector2f(0.5f, 3f),
+        0f, 2f, /**/ 0.5f, 3f, /**/ 0f, 3f,
+        0f, 2f, /**/ 0.5f, 2f, /**/ 0.5f, 3f,
         // Left
-        new Vector2f(0f, 0f), new Vector2f(0.5f, 3f), new Vector2f(0f, 3f),
-        new Vector2f(0f, 0f), new Vector2f(0.5f, 0f), new Vector2f(0.5f, 3f),
+        0f, 0f, /**/ 0.5f, 3f, /**/ 0f, 3f,
+        0f, 0f, /**/ 0.5f, 0f, /**/ 0.5f, 3f,
         // Top left
-        new Vector2f(0f, 0f), new Vector2f(1f, 0.5f), new Vector2f(0f, 0.5f),
-        new Vector2f(0f, 0f), new Vector2f(1f, 0f), new Vector2f(1f, 0.5f),
+        0f, 0f, /**/ 1f, 0.5f, /**/ 0f, 0.5f,
+        0f, 0f, /**/ 1f, 0f, /**/ 1f, 0.5f,
         // Top right
-        new Vector2f(0f, 0f), new Vector2f(1f, 0.5f), new Vector2f(0f, 0.5f),
-        new Vector2f(0f, 0f), new Vector2f(1f, 0f), new Vector2f(1f, 0.5f)
+        0f, 0f, /**/ 1f, 0.5f, /**/ 0f, 0.5f,
+        0f, 0f, /**/ 1f, 0f, /**/ 1f, 0.5f,
     };
 
-    private final Vector3f[] normals = {
+    private final float[] normals = {
             // Front large
-            new Vector3f(0f, 0f, 1f), new Vector3f(0f, 0f, 1f), new Vector3f(0f, 0f, 1f),
-            new Vector3f(0f, 0f, 1f), new Vector3f(0f, 0f, 1f), new Vector3f(0f, 0f, 1f),
+            0f, 0f, 1f, /**/ 0f, 0f, 1f, /**/ 0f, 0f, 1f,
+            0f, 0f, 1f, /**/ 0f, 0f, 1f, /**/ 0f, 0f, 1f,
             // Front small
-            new Vector3f(0f, 0f, 1f), new Vector3f(0f, 0f, 1f), new Vector3f(0f, 0f, 1f),
-            new Vector3f(0f, 0f, 1f), new Vector3f(0f, 0f, 1f), new Vector3f(0f, 0f, 1f),
+            0f, 0f, 1f, /**/ 0f, 0f, 1f, /**/ 0f, 0f, 1f,
+            0f, 0f, 1f, /**/ 0f, 0f, 1f, /**/ 0f, 0f, 1f,
             // Back large
-            new Vector3f(0f, 0f, -1f), new Vector3f(0f, 0f, -1f), new Vector3f(0f, 0f, -1f),
-            new Vector3f(0f, 0f, -1f), new Vector3f(0f, 0f, -1f), new Vector3f(0f, 0f, -1f),
+            0f, 0f, -1f, /**/ 0f, 0f, -1f, /**/ 0f, 0f, -1f,
+            0f, 0f, -1f, /**/ 0f, 0f, -1f, /**/ 0f, 0f, -1f,
             // Back small
-            new Vector3f(0f, 0f, -1f), new Vector3f(0f, 0f, -1f), new Vector3f(0f, 0f, -1f),
-            new Vector3f(0f, 0f, -1f), new Vector3f(0f, 0f, -1f), new Vector3f(0f, 0f, -1f),
+            0f, 0f, -1f, /**/ 0f, 0f, -1f, /**/ 0f, 0f, -1f,
+            0f, 0f, -1f, /**/ 0f, 0f, -1f, /**/ 0f, 0f, -1f,
             // Right large
-            new Vector3f(1f, 0f, 0f), new Vector3f(1f, 0f, 0f), new Vector3f(1f, 0f, 0f),
-            new Vector3f(1f, 0f, 0f), new Vector3f(1f, 0f, 0f), new Vector3f(1f, 0f, 0f),
+            1f, 0f, 0f, /**/ 1f, 0f, 0f, /**/ 1f, 0f, 0f,
+            1f, 0f, 0f, /**/ 1f, 0f, 0f, /**/ 1f, 0f, 0f,
             // Right small
-            new Vector3f(1f, 0f, 0f), new Vector3f(1f, 0f, 0f), new Vector3f(1f, 0f, 0f),
-            new Vector3f(1f, 0f, 0f), new Vector3f(1f, 0f, 0f), new Vector3f(1f, 0f, 0f),
+            1f, 0f, 0f, /**/ 1f, 0f, 0f, /**/ 1f, 0f, 0f,
+            1f, 0f, 0f, /**/ 1f, 0f, 0f, /**/ 1f, 0f, 0f,
             // Left
-            new Vector3f(-1f, 0f, 0f), new Vector3f(-1f, 0f, 0f), new Vector3f(-1f, 0f, 0f),
-            new Vector3f(-1f, 0f, 0f), new Vector3f(-1f, 0f, 0f), new Vector3f(-1f, 0f, 0f),
+            -1f, 0f, 0f, /**/ -1f, 0f, 0f, /**/ -1f, 0f, 0f,
+            -1f, 0f, 0f, /**/ -1f, 0f, 0f, /**/ -1f, 0f, 0f,
             // Top left
-            new Vector3f(0f, 1f, 0f), new Vector3f(0f, 1f, 0f), new Vector3f(0f, 1f, 0f),
-            new Vector3f(0f, 1f, 0f), new Vector3f(0f, 1f, 0f), new Vector3f(0f, 1f, 0f),
+            0f, 1f, 0f, /**/ 0f, 1f, 0f, /**/ 0f, 1f, 0f,
+            0f, 1f, 0f, /**/ 0f, 1f, 0f, /**/ 0f, 1f, 0f,
             // Top right
-            new Vector3f(0f, 1f, 0f), new Vector3f(0f, 1f, 0f), new Vector3f(0f, 1f, 0f),
-            new Vector3f(0f, 1f, 0f), new Vector3f(0f, 1f, 0f), new Vector3f(0f, 1f, 0f)
+            0f, 1f, 0f, /**/ 0f, 1f, 0f, /**/ 0f, 1f, 0f,
+            0f, 1f, 0f, /**/ 0f, 1f, 0f, /**/ 0f, 1f, 0f,
     };
 
     ////////////////////////////////////////////////////////////
@@ -113,26 +113,26 @@ public class WallModel extends Model {
 
     @Override
     public int getNumVertices() {
-        return vertices.length;
+        return vertices.length / 3;
     }
 
     @Override
-    public Vector3f[] getVertices() {
+    public float[] getVertices() {
         return vertices;
     }
 
     @Override
-    public Vector2f[] getTexCoords() {
+    public float[] getTexCoords() {
         return texCoords;
     }
 
     @Override
-    public Vector3f[] getNormals() {
+    public float[] getNormals() {
         return normals;
     }
 
     @Override
-    public Vector4f[] getColors() {
+    public float[] getColors() {
         return null;
     }
 
