@@ -118,7 +118,7 @@ public class Entity {
     // Public Interface
     ////////////////////////////////////////////////////////////
 
-    public void init(GL4 gl) {
+    public void init(GL4 gl) throws Utils.OpenGLException {
         children.init(gl);
     }
 

@@ -44,7 +44,7 @@ public class ImportedModel extends Model {
         }
     }
 
-    private void tryLoadMaterial(String filename) throws IOException {
+    private void tryLoadMaterial(String filename) throws IOException, Utils.OpenGLException {
         String materialFilename = filename.substring(0, filename.lastIndexOf('.')) + ".mtl";
         InputStream inStream = ImportedModel.class.getResourceAsStream(materialFilename);
         if(inStream == null) return;

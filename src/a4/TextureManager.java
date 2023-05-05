@@ -16,7 +16,7 @@ public class TextureManager {
         return instance;
     }
 
-    public int getTexture(String path) {
+    public int getTexture(String path) throws Utils.OpenGLException {
         if (textures.containsKey(path)) {
             return textures.get(path);
         } else {

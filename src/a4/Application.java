@@ -135,12 +135,19 @@ public class Application extends JFrame implements GLEventListener {
         GL4 gl = (GL4) GLContext.getCurrentGL();
         printVersionNumbers(gl);
         createVAOs(gl);
-        scene = new Assignment4Scene(
-                canvas,
-                new Camera.CameraParameters(60f, GL_CANVAS_ASPECT_RATIO, .1f, 1000f)
-        );
-        scene.init(gl);
-        RenderSystem.getInstance().init(scene.getCamera());
+        try {
+            scene = new Assignment4Scene(
+                    canvas,
+                    new Camera.CameraParameters(60f, GL_CANVAS_ASPECT_RATIO, .1f, 1000f)
+            );
+            scene.init(gl);
+            RenderSystem.getInstance().init(scene.getCamera());
+        }
+        catch(Utils.OpenGLException e) {
+            System.err.println("Failed to initialize: " + e.getMessage());
+            e.printStackTrace();
+            exit(1);
+        }
         lastFrameMillis = System.currentTimeMillis();
         animator.start();
     }

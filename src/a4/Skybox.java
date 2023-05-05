@@ -14,9 +14,9 @@ public class Skybox {
     private final int cubeMapID;
     private final Model cubeModel;
 
-    public Skybox(int shaderProgram, String directory) {
+    public Skybox(int shaderProgram, String directory) throws Utils.OpenGLException {
         this.shaderProgram = shaderProgram;
-        cubeMapID = Utils.loadCubeMap(directory);
+        cubeMapID = Utils.loadCubeMap(directory, 1024, 1024);
         cubeModel = new CubeModel();
         cubeModel.initVBOs();
     }

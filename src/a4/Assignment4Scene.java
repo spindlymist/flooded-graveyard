@@ -48,7 +48,7 @@ public class Assignment4Scene extends Scene {
     ////////////////////////////////////////////////////////////
 
     @Override
-    public void init(GL4 gl) {
+    public void init(GL4 gl) throws Utils.OpenGLException {
         loadShaders();
         loadModels(gl);
         populateScene();
@@ -144,7 +144,7 @@ public class Assignment4Scene extends Scene {
         modelManager.importModel("ghost", "assets/models/ghost.obj").initVBOs();
     }
 
-    private void loadShaders() {
+    private void loadShaders() throws Utils.OpenGLException {
         unlitShaderProgram = Utils.createShaderProgram("a4/shaders/unlitVertShader.glsl", "a4/shaders/unlitFragShader.glsl");
         phongShaderProgram = Utils.createShaderProgram("a4/shaders/phongVertShader.glsl", "a4/shaders/phongFragShader.glsl");
         phong3DShaderProgram = Utils.createShaderProgram("a4/shaders/phongVertShader3D.glsl", "a4/shaders/phongFragShader3D.glsl");
@@ -159,7 +159,7 @@ public class Assignment4Scene extends Scene {
     // Internal Methods: Scene Creation
     ////////////////////////////////////////////////////////////
 
-    private void populateScene() {
+    private void populateScene() throws Utils.OpenGLException {
         placeAxes();
         placeLightMarker();
         placeGround();
@@ -179,7 +179,7 @@ public class Assignment4Scene extends Scene {
         placeModel("tree", treeRenderer, new Vector3f(-4f, 0f, -30f), new Vector3f(0f, -135f, 0f));
     }
 
-    private void placeGraves() {
+    private void placeGraves() throws Utils.OpenGLException {
         Material graveMat = new Material();
         graveMat.diffuseTex = TextureManager.getInstance().getTexture("textures/Rock_028_COLOR.jpg");
         graveMat.normalMap = TextureManager.getInstance().getTexture("textures/Rock_028_NORM.jpg");
@@ -202,7 +202,7 @@ public class Assignment4Scene extends Scene {
         placeGrave(graveRenderer, 8f,  -19f);
     }
 
-    private void placeGhost() {
+    private void placeGhost() throws Utils.OpenGLException {
         Material ghostMat = new Material();
         ghostMat.normalMap = TextureManager.getInstance().getTexture("textures/TexturesCom_Fabric_Felt_1K_normal.jpg");
         ghostMat.specular.set(.1f, .1f, .1f, 1f);
@@ -228,7 +228,7 @@ public class Assignment4Scene extends Scene {
         add(waterPlane);
     }
 
-    private void placeCross() {
+    private void placeCross() throws Utils.OpenGLException {
         Material crossMat = new Material(0, .1f);
         Noise noise = new MarbleNoise(200, 200, 200);
         crossMat.tex3D = Utils.loadTexture3D(noise.generateData(6), 200, 200, 200);
@@ -278,7 +278,7 @@ public class Assignment4Scene extends Scene {
         add(axes);
     }
 
-    private void placeGround() {
+    private void placeGround() throws Utils.OpenGLException {
         int grassTexture = TextureManager.getInstance().getTexture("textures/grass.png");
         Material grassMaterial = new Material(grassTexture, .1f);
         grassMaterial.specular.set(.1f, .1f, .1f, 1f);

@@ -52,12 +52,19 @@ public class RenderSystem {
     ////////////////////////////////////////////////////////////
 
     private RenderSystem() {
-        int shadowProgram = Utils.createShaderProgram(
-                "a4/shaders/shadowMapVertShader.glsl",
-                "a4/shaders/shadowMapGeomShader.glsl",
-                "a4/shaders/shadowMapFragShader.glsl"
-        );
-        SharedRenderers.shadowRenderer = new ShadowRenderer(shadowProgram);
+        try {
+            int shadowProgram = Utils.createShaderProgram(
+                    "a4/shaders/shadowMapVertShader.glsl",
+                    "a4/shaders/shadowMapGeomShader.glsl",
+                    "a4/shaders/shadowMapFragShader.glsl"
+            );
+           SharedRenderers.shadowRenderer = new ShadowRenderer(shadowProgram);
+        }
+        catch(Utils.OpenGLException e) {
+            System.err.println("Failed to initialize RenderSystem: " + e.getMessage());
+            e.printStackTrace();
+            System.exit(1);
+        }
     }
 
     ////////////////////////////////////////////////////////////
@@ -68,7 +75,7 @@ public class RenderSystem {
         return instance;
     }
 
-    public void init(Camera camera) {
+    public void init(Camera camera) throws Utils.OpenGLException {
         GL4 gl = (GL4) GLContext.getCurrentGL();
         gl.glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
 
@@ -89,9 +96,6 @@ public class RenderSystem {
                 "a4/shaders/skyboxVertShader.glsl",
                 "a4/shaders/skyboxFragShader.glsl"
         );
-        while(!Utils.errorHistory.isEmpty()) {
-            System.out.println(Utils.errorHistory.remove());
-        }
         camera.setSkybox(new Skybox(skyboxProgram, "a4/assets/textures/starry_skybox"));
     }
 

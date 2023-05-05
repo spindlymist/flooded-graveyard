@@ -15,7 +15,7 @@ public class EntityCollection implements Collection<Entity>, Iterable<Entity> {
     public EntityCollection() {
     }
 
-    public void init(GL4 gl) {
+    public void init(GL4 gl) throws Utils.OpenGLException {
         for(Entity entity : entities) {
             entity.init(gl);
         }
