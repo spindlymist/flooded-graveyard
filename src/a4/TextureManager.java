@@ -20,7 +20,7 @@ public class TextureManager {
         if (textures.containsKey(path)) {
             return textures.get(path);
         } else {
-            int textureID = Utils.loadTexture("a4/assets/" + path);
+            int textureID = Utils.loadTexture("assets/" + path);
             textures.put(path, textureID);
             return textureID;
         }

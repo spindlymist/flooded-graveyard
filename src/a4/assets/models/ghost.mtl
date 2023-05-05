@@ -10,5 +10,5 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Bump textures\\TexturesCom_Fabric_Felt_1K_normal.jpg
-map_Kd textures\\TexturesCom_Fabric_Felt_1K_albedo.png
+map_Bump textures/TexturesCom_Fabric_Felt_1K_normal.jpg
+map_Kd textures/TexturesCom_Fabric_Felt_1K_albedo.png

@@ -145,11 +145,11 @@ public class Assignment4Scene extends Scene {
     }
 
     private void loadShaders() throws Utils.OpenGLException {
-        unlitShaderProgram = Utils.createShaderProgram("a4/shaders/unlitVertShader.glsl", "a4/shaders/unlitFragShader.glsl");
-        phongShaderProgram = Utils.createShaderProgram("a4/shaders/phongVertShader.glsl", "a4/shaders/phongFragShader.glsl");
-        phong3DShaderProgram = Utils.createShaderProgram("a4/shaders/phongVertShader3D.glsl", "a4/shaders/phongFragShader3D.glsl");
-        pointShaderProgram = Utils.createShaderProgram("a4/shaders/pointVertShader.glsl", "a4/shaders/pointFragShader.glsl");
-        waterShaderProgram = Utils.createShaderProgram("a4/shaders/waterVertShader.glsl", "a4/shaders/waterFragShader.glsl");
+        unlitShaderProgram = Utils.createShaderProgram("shaders/unlitVertShader.glsl", "shaders/unlitFragShader.glsl");
+        phongShaderProgram = Utils.createShaderProgram("shaders/phongVertShader.glsl", "shaders/phongFragShader.glsl");
+        phong3DShaderProgram = Utils.createShaderProgram("shaders/phongVertShader3D.glsl", "shaders/phongFragShader3D.glsl");
+        pointShaderProgram = Utils.createShaderProgram("shaders/pointVertShader.glsl", "shaders/pointFragShader.glsl");
+        waterShaderProgram = Utils.createShaderProgram("shaders/waterVertShader.glsl", "shaders/waterFragShader.glsl");
         RenderSystem.getInstance().registerLitShaderProgram(phongShaderProgram);
         RenderSystem.getInstance().registerLitShaderProgram(phong3DShaderProgram);
         RenderSystem.getInstance().registerLitShaderProgram(waterShaderProgram);

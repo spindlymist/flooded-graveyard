@@ -54,9 +54,9 @@ public class RenderSystem {
     private RenderSystem() {
         try {
             int shadowProgram = Utils.createShaderProgram(
-                    "a4/shaders/shadowMapVertShader.glsl",
-                    "a4/shaders/shadowMapGeomShader.glsl",
-                    "a4/shaders/shadowMapFragShader.glsl"
+                    "shaders/shadowMapVertShader.glsl",
+                    "shaders/shadowMapGeomShader.glsl",
+                    "shaders/shadowMapFragShader.glsl"
             );
            SharedRenderers.shadowRenderer = new ShadowRenderer(shadowProgram);
         }
@@ -93,10 +93,10 @@ public class RenderSystem {
         waterNoiseTexture = Utils.loadTexture3D(noise.generateData(6), 256, 256, 256);
 
         int skyboxProgram = Utils.createShaderProgram(
-                "a4/shaders/skyboxVertShader.glsl",
-                "a4/shaders/skyboxFragShader.glsl"
+                "shaders/skyboxVertShader.glsl",
+                "shaders/skyboxFragShader.glsl"
         );
-        camera.setSkybox(new Skybox(skyboxProgram, "a4/assets/textures/starry_skybox"));
+        camera.setSkybox(new Skybox(skyboxProgram, "assets/textures/starry_skybox"));
     }
 
     public void render(Scene scene) {

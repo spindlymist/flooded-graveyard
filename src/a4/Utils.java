@@ -12,9 +12,13 @@ import javax.imageio.ImageIO;
 import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static com.jogamp.opengl.GL4.*;
 
@@ -59,12 +63,17 @@ public class Utils {
     private static int compileShader(int type, String file) throws OpenGLException {
         GL4 gl = (GL4) GLContext.getCurrentGL();
 
+        InputStream inStream = Utils.class.getResourceAsStream(file);
+        if(inStream == null) {
+            throw new OpenGLException("Failed to read shader from `" + file + "`");
+        }
+
         String source;
         try {
-            source = Files.readString(Path.of(file));
+            source = new String(inStream.readAllBytes());
         }
-        catch(IOException e) {
-            throw new OpenGLException("Failed to reader shader from `" + file + "`", e);
+        catch(Exception e) {
+            throw new OpenGLException("Failed to read shader from `" + file + "`", e);
         }
 
         int shader = gl.glCreateShader(type);
@@ -102,16 +111,21 @@ public class Utils {
         }
     }
 
-    public static int loadTexture(String textureFile) throws OpenGLException {
+    public static int loadTexture(String file) throws OpenGLException {
         GL4 gl = (GL4) GLContext.getCurrentGL();
+
+        InputStream inStream = Utils.class.getResourceAsStream(file);
+        if(inStream == null) {
+            throw new OpenGLException("Failed to load texture from `" + file + "`");
+        }
 
         int texture;
         try {
-            Texture tex = TextureIO.newTexture(new File(textureFile), false);
+            Texture tex = TextureIO.newTexture(inStream, false, null);
             texture = tex.getTextureObject();
         }
-        catch(IOException e) {
-            throw new OpenGLException("Failed to load texture from `" + textureFile + "`", e);
+        catch(Exception e) {
+            throw new OpenGLException("Failed to load texture from `" + file + "`", e);
         }
 
         // Generate mipmaps
@@ -154,12 +168,12 @@ public class Utils {
     public static int loadCubeMap(String directory, int width, int height) throws OpenGLException {
         GL4 gl = (GL4) GLContext.getCurrentGL();
 
-        byte[] top = getRGBAPixelData(Path.of(directory, "yp.jpg").toString());
-        byte[] left = getRGBAPixelData(Path.of(directory, "xn.jpg").toString());
-        byte[] front = getRGBAPixelData(Path.of(directory, "zp.jpg").toString());
-        byte[] right = getRGBAPixelData(Path.of(directory, "xp.jpg").toString());
-        byte[] back = getRGBAPixelData(Path.of(directory, "zn.jpg").toString());
-        byte[] bottom = getRGBAPixelData(Path.of(directory, "yn.jpg").toString());
+        byte[] top = getRGBAPixelData(directory + "/yp.jpg");
+        byte[] left = getRGBAPixelData(directory + "/xn.jpg");
+        byte[] front = getRGBAPixelData(directory + "/zp.jpg");
+        byte[] right = getRGBAPixelData(directory + "/xp.jpg");
+        byte[] back = getRGBAPixelData(directory + "/zn.jpg");
+        byte[] bottom = getRGBAPixelData(directory + "/yn.jpg");
 
         int texture;
         {
@@ -192,11 +206,16 @@ public class Utils {
     }
 
     private static byte[] getRGBAPixelData(String file) throws OpenGLException {
+        InputStream inStream = Utils.class.getResourceAsStream(file);
+        if(inStream == null) {
+            throw new OpenGLException("Failed to read image from `" + file + "`");
+        }
+
         BufferedImage image;
         try {
-            image = ImageIO.read(new File(file));
+            image = ImageIO.read(inStream);
         }
-        catch(IOException e) {
+        catch(Exception e) {
             throw new OpenGLException("Failed to read image from `" + file + "`", e);
         }
 
