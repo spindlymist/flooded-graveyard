@@ -30,6 +30,7 @@ public class Assignment4Scene extends Scene {
 
     private int unlitShaderProgram, phongShaderProgram, phong3DShaderProgram, waterShaderProgram, pointShaderProgram;
     private Entity axes, lightMarker, waterPlane;
+    private DriftBehavior ghostDriftBehavior;
     private final Camera.FogParameters aboveWaterFog =
             new Camera.FogParameters(new Vector4f(.12f, .12f, .25f, 1f), 5f, 27f);
     private final Camera.FogParameters belowWaterFog =
@@ -115,6 +116,9 @@ public class Assignment4Scene extends Scene {
         }
         else if(e.getKeyCode() == KeyEvent.VK_F4) {
             toggleWater();
+        }
+        else if(e.getKeyCode() == KeyEvent.VK_F5) {
+            this.ghostDriftBehavior.setEnabled(!this.ghostDriftBehavior.isEnabled());
         }
     }
 
@@ -211,7 +215,8 @@ public class Assignment4Scene extends Scene {
         Entity ghost = placeModel("ghost", RenderSystem.SharedRenderers.dummyRenderer, new Vector3f(4f, 3f, -4f), MathUtil.VEC3_ZERO);
         ghost.setScale(2.2f);
         ghost.setRenderer(RenderPass.Alpha, ghostRenderer);
-        ghost.addBehavior(new DriftBehavior(ghost));
+        this.ghostDriftBehavior = new DriftBehavior(ghost);
+        ghost.addBehavior(this.ghostDriftBehavior);
     }
 
     private void placeWater() {

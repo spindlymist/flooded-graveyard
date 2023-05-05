@@ -16,6 +16,7 @@ public class DriftBehavior extends Behavior {
     private float targetAngle;
     private float maxVelocity = .1f;
     private float angularSpeed = 22.5f;
+    private boolean enabled = true;
 
     public DriftBehavior(Entity owner) {
         super(owner);
@@ -32,6 +33,8 @@ public class DriftBehavior extends Behavior {
 
     @Override
     public void update(double dt) {
+        if(!enabled) return;
+
         maxVelocity = (float) Math.sin(Application.getGameTime() / 4.0) * .5f + .75f;
 
         if(atTarget()) {
@@ -88,6 +91,14 @@ public class DriftBehavior extends Behavior {
         Vector3f pos = new Vector3f(getOwner().getPosition());
         pos.y = (float) Math.sin(Application.getGameTime()) * .33f + 3.0f;
         getOwner().setPosition(pos);
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public boolean isEnabled() {
+        return this.enabled;
     }
 
 }
